@@ -52,14 +52,9 @@ $topclass_name = "filter__item--active";
                 <h3 class="navigation__title navigation__title--list">Категории</h3>
 
                 <nav class="navigation__links">
-                    <a href="/category?id=4">Видеоигры</a>
-                    <a href="/category?id=2">Животные</a>
-                    <a href="/category?id=8">Люди</a>
-                    <a href="/category?id=6">Наука</a>
-                    <a href="/category?id=5">Приколы</a>
-                    <a href="/category?id=3">Спорт</a>
-                    <a href="/category?id=7">Фейлы</a>
-                    <a href="/category?id=1">Фильмы и анимация</a>
+                    <?php foreach ($categories as $category): ?>
+                        <a href="/category?id=1"><?=$category;?></a>
+                    <?php endforeach; ?>
                 </nav>
             </div>
         </section>
@@ -76,22 +71,24 @@ $topclass_name = "filter__item--active";
                     content__header-button" href="">Загрузить свою</a>
                 </header>
                 <ul class="gif-list">
-                    <li class="gif gif-list__item">
-                        <div class="gif__picture">
-                            <a href="" class="gif__preview">
-                                <img src="img/no-pic.png" width="260" height="260">
-                            </a>
-                        </div>
-                        <div class="gif__desctiption">
-                            <h3 class="gif__desctiption-title">
-                                <a href="">Гифка-рыба</a>
-                            </h3>
-                            <div class="gif__description-data">
-                                <span class="gif__username">@fignam</span>
-                                <span class="gif__likes">103</span>
+                    <?php foreach ($gif_list as $gif): ?>
+                        <li class="gif gif-list__item">
+                            <div class="gif__picture">
+                                <a href="" class="gif__preview">
+                                    <img src="<?=$gif['gif']?>" width="260" height="260">
+                                </a>
                             </div>
-                        </div>
-                    </li>
+                            <div class="gif__desctiption">
+                                <h3 class="gif__desctiption-title">
+                                    <a href=""><?=$gif['title']?></a>
+                                </h3>
+                                <div class="gif__description-data">
+                                    <span class="gif__username">@fignam</span>
+                                    <span class="gif__likes"><?=$gif['likes_count']?></span>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </main>
