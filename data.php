@@ -12,28 +12,33 @@ $categories = [
 
 $gif_list = [
     [
-        'gif' => '/uploads/gif1.gif',
+        'gif' => 'gif1.gif',
         'title' => 'Кот-прачка',
+        'author' => '@fignam',
         'likes_count' => 10
     ],
     [
-        'gif' => '/uploads/gif2.gif',
+        'gif' => 'gif2.gif',
         'title' => 'Буги-вуги каждый день!',
+        'author' => '@fignam',
         'likes_count' => 3
     ],
     [
-        'gif' => '/uploads/gif4.gif',
+        'gif' => 'gif4.gif',
         'title' => 'Искренний восторг',
+        'author' => '@fignam',
         'likes_count' => 20
     ],
     [
-        'gif' => '/uploads/gif5.gif',
+        'gif' => 'gif5.gif',
         'title' => 'Дог-моторс',
+        'author' => '@fignam',
         'likes_count' => 5
     ],
     [
-        'gif' => '/uploads/gif6.gif',
+        'gif' => 'gif6.gif',
         'title' => 'Кошачьи горки',
+        'author' => '@fignam',
         'likes_count' => 8
     ]
 ];

@@ -7,8 +7,11 @@ if (!$config['enable']) {
     exit;
 }
 
-print include_template('index.php', [
-    'content' => $content,
-    'categories' => $categories,
-    'gif_list' => $gif_list
+$page_content = include_template('main.php', ['gif_list' => $gif_list]);
+
+$layout_content = include_template('layout.php', [
+    'content' => $page_content,
+    'categories' => $categories
 ]);
+
+print($layout_content);
