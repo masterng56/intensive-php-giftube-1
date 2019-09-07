@@ -16,3 +16,13 @@ function include_template($name, $data) {
 
     return $result;
 }
+
+// принимает timestamp и возвращает дату в человеческом виде
+function show_date($timestamp){
+    $dt = date_create();
+    $dt = date_timestamp_set($dt, $timestamp);
+
+    $format = date_format($dt, "d.m.Y H:i");
+
+    return $format;
+}

@@ -11,9 +11,9 @@
 
         <div class="gif__description-data">
             <span class="gif__username"><?=$gif['author'];?>
-                от <small>дата-время</small>
+                от <small><?=show_date($gif['dt']); ?></small>
             </span>
-            <span class="gif__likes">0</span>
+            <span class="gif__likes"><?=$gif['likes_count']; ?></span>
         </div>
     </div>
 </li>
