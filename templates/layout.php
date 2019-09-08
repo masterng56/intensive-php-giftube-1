@@ -52,7 +52,7 @@ $topclass_name = "filter__item--active";
 
                 <nav class="navigation__links">
                     <?php foreach ($categories as $category): ?>
-                        <a href="/category?id=1"><?=$category;?></a>
+                        <a href="/category?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
                     <?php endforeach; ?>
                 </nav>
             </div>
