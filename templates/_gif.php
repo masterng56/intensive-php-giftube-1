@@ -6,7 +6,7 @@
     </div>
     <div class="gif__desctiption">
         <h3 class="gif__desctiption-title">
-            <a href=""><?=$gif['title']; ?></a>
+            <a href="view.php"><?=$gif['title']; ?></a>
         </h3>
 
         <div class="gif__description-data">

@@ -1,5 +1,4 @@
 <?php
-$title = "Giftube";
 $topclass_name = "filter__item--active";
 ?>
 <!DOCTYPE html>
@@ -8,7 +7,7 @@ $topclass_name = "filter__item--active";
 <head>
     <meta charset="UTF-8">
     <base href="/">
-    <title>Главная страница | <?=$title;?></title>
+    <title><?=$title;?></title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/custom.css">

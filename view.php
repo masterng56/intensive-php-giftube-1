@@ -7,12 +7,12 @@ if (!$config['enable']) {
     exit;
 }
 
-$page_content = include_template('main.php', ['gif_list' => $gif_list]);
+$page_content = include_template('view.php', ['comments' => $comments]);
 
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
-    'categories' => $categories,
-    'title' => 'Главная страница | Giftube'
+    'categories' => [],
+    'title' => 'GifTube - Просмотр гифки'
 ]);
 
 print($layout_content);
