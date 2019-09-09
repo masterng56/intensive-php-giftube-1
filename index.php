@@ -7,7 +7,38 @@ if (!$config['enable']) {
     exit;
 }
 
-$page_content = include_template('main.php', ['gif_list' => $gif_list]);
+if (!$link) {
+    $error = mysqli_connect_error();
+    $page_content = include_template('error.php', ['error' => $error]);
+}
+else {
+    // получаем категории
+    $sql = 'SELECT `id`, `name` FROM categories';
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+    else {
+        $error = mysqli_error($link);
+        $page_content = include_template('error.php', ['error' => $error]);
+    }
+
+    // запрос на показ шести самых популярных гифок
+    $sql = 'SELECT gifs.dt_add, gifs.id, title, path, like_count, users.name FROM gifs '
+         . 'JOIN users ON gifs.user_id = users.id '
+         . 'ORDER BY show_count DESC LIMIT 6';
+    $result = mysqli_query($link, $sql);
+
+    if ($result) {
+        $gif_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $page_content = include_template('main.php', ['gif_list' => $gif_list]);
+    }
+    else {
+        $error = mysqli_error($link);
+        $page_content = include_template('error.php', ['error' => $error]);
+    }
+}
 
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
