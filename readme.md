@@ -19,3 +19,19 @@
 - настроим вывод гифок из базы данных;
 - реализуем поиск гифок по названию и описанию;
 - реализуем страницу показа гифки;
+
+Step 1: From your project repository, bring in the changes and test.
+
+```
+git fetch origin
+git checkout -b adding-database origin/adding-database
+git merge master
+```
+
+Step 2: Merge the changes and update on GitHub.
+
+```
+git checkout master
+git merge --no-ff adding-database
+git push origin master
+```
