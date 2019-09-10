@@ -8,7 +8,7 @@
         </nav>
 
         <a class="button button--transparent button--transparent-thick
-                    content__header-button" href="">Загрузить свою</a>
+                    content__header-button" href="/add.php">Загрузить свою</a>
     </header>
 
     <ul class="gif-list">
