@@ -35,3 +35,7 @@ git checkout master
 git merge --no-ff adding-database
 git push origin master
 ```
+
+### 3 этап. Работа с формами.
+
+- сделаем сортировку гифок на главной - топовые/свежачок;

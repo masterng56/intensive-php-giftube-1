@@ -3,8 +3,8 @@
 
     <header class="content__header">
         <nav class="filter">
-            <a class="filter__item" href="">Топовые гифки</a>
-            <a class="filter__item" href="">Свежачок</a>
+            <a class="filter__item" href="/">Топовые гифки</a>
+            <a class="filter__item" href="/?tab=new">Свежачок</a>
         </nav>
 
         <a class="button button--transparent button--transparent-thick

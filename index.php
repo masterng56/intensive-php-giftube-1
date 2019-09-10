@@ -24,10 +24,17 @@ else {
         $page_content = include_template('error.php', ['error' => $error]);
     }
 
-    // запрос на показ шести самых популярных гифок
+    // запрос на показ гифок в зависимости от выбора
+    // "Топовые гифки" или "Свежачок"
+    $sort_field = 'show_count';
+
+    if (isset($_GET['tab']) && $_GET['tab'] == 'new') {
+        $sort_field = 'dt_add';
+    }
+
     $sql = 'SELECT gifs.dt_add, gifs.id, title, path, like_count, users.name FROM gifs '
          . 'JOIN users ON gifs.user_id = users.id '
-         . 'ORDER BY show_count DESC LIMIT 6';
+         . 'ORDER BY ' . $sort_field . ' DESC LIMIT 6';
     $result = mysqli_query($link, $sql);
 
     if ($result) {
