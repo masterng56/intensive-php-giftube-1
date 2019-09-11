@@ -41,7 +41,7 @@ $topclass_name = "filter__item--active";
             <div class="navigation__item">
                 <h3 class="navigation__title navigation__title--account">Мой Giftube</h3>
                     <nav class="navigation__links">
-                        <a href="register.php">Регистрация</a>
+                        <a href="/register.php">Регистрация</a>
                         <a href="/signin">Вход для своих</a>
                         <a href="/favorites.php">Избранное</a>
                     </nav>
