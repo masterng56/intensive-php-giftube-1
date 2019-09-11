@@ -31,30 +31,46 @@
             <div class="form__column">
                 <div class="form__row">
                     <label class="form__label" for="category">Категория:</label>
+                    <?php $classname = isset($errors['category_id']) ? "form__input--error" : ""; ?>
 
-                    <select class="form__input form__input--select" name="category_id" id="category">
+                    <select class="form__input form__input--select <?= $classname; ?>" name="category_id" id="category">
                         <option value="">Выберите категорию</option>
                         <?php foreach ($categories as $category): ?>
-                            <option value="<?= $category['id'] ?>"><?= $category['name']; ?></option>
+                            <option value="<?= $category['id'] ?>"
+                      <?php if ($category['id'] == $gif['category_id']): ?>selected<?php endif; ?>><?=$category['name'];?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
 
                 <div class="form__row">
+                    <?php $classname = isset($errors['title']) ? "form__input--error" : ""; ?>
+
                     <label class="form__label" for="name">Название:</label>
-                    <input class="form__input" type="text" name="title" id="name" value=""
-                           placeholder="Введите название">
+                    <input class="form__input <?= $classname; ?>" type="text" name="title" id="name" value="<?= getPostVal('title'); ?>" placeholder="Введите название">
                 </div>
 
                 <div class="form__row">
+                    <?php $classname = isset($errors['description']) ? "form__input--error" : ""; ?>
+
                     <label class="form__label" for="description">Описание:</label>
                     <textarea
-                            class="form__input"
+                            class="form__input <?= $classname; ?>"
                             name="description" id="description" rows="5" cols="80"
-                            placeholder="Краткое описание"></textarea>
+                            placeholder="Краткое описание"><?= getPostVal('description'); ?></textarea>
                 </div>
             </div>
         </div>
+        
+        <?php if (isset($errors)): ?>
+           <div class="form__errors">
+              <p>Пожалуйста, исправьте следующие ошибки:</p>
+              <ul>
+                <?php foreach ($errors as $val): ?>
+                   <li><strong><?= $val; ?>:</strong></li>
+                <?php endforeach; ?>
+              </ul>
+           </div>
+        <?php endif; ?>
 
         <div class="form__controls">
             <input class="button form__control" type="submit" name="" value="Добавить">

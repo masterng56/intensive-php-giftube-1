@@ -75,3 +75,36 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
 
     return $stmt;
 }
+
+
+function getPostVal($name) {
+    return $_POST[$name] ?? "";
+}
+
+function validateFilled($name) {
+    if (empty($_POST[$name])) {
+        return "Это поле должно быть заполнено";
+    }
+
+    return null;
+}
+
+function validateCategory($name, $allowed_list) {
+    $id = $_POST[$name];
+
+    if (!in_array($id, $allowed_list)) {
+        return "Указана несуществующая категория";
+    }
+
+    return null;
+}
+
+function validateLength($name, $min, $max) {
+    $len = strlen($_POST[$name]);
+
+    if ($len < $min or $len > $max) {
+        return "Значение должно быть от $min до $max символов";
+    }
+
+    return null;
+}
