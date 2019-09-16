@@ -24,7 +24,7 @@ else {
         $page_content = include_template('error.php', ['error' => $error]);
     }
 
-    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '0';
+    $user_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : '0';
     $sql = "SELECT gifs.id, gifs.title, gifs.path, gifs.description, gifs.show_count, gifs.like_count, gifs.fav_count, users.name, gifs.category_id FROM gifs_fav "
          . "JOIN gifs ON gifs.id = gifs_fav.gif_id "
          . "JOIN users ON gifs.user_id = users.id "

@@ -7,6 +7,8 @@ if (!$config['enable']) {
     exit;
 }
 
+var_dump($_SESSION);
+
 if (!$link) {
     $error = mysqli_connect_error();
     $page_content = include_template('error.php', ['error' => $error]);
