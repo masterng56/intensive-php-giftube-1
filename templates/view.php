@@ -24,6 +24,8 @@
             </div>
             <?php if (isset($_SESSION['user']['id'])): ?>
                 <div class="gif__controls">
+                    <?php $likeClass = $is_liked ? 'gif__control--active' : ''; ?>
+                    <a class="button gif__control <?=$likeClass;?>" href="/addlike.php?id=<?=$gif['id'];?>">Мне нравится</a>
                     <?php $favClass = $is_fav ? 'gif__control--active' : ''; ?>
                     <a class="button gif__control <?=$favClass;?>" href="/addfav.php?id=<?=$gif['id'];?>">В избранное</a>
                 </div>
@@ -42,6 +44,19 @@
             </article>
         <?php endforeach; ?>
     </div>
+    <?php if (isset($_SESSION['user']['id'])): ?>
+        <form class="comment-form" action="" method="post">
+            <label class="comment-form__label" for="comment">Добавить комментарий:</label>
+            <textarea class="comment-form__text form__input--error" name="comment[content]" id="comment" rows="8" cols="80" placeholder="Помните о правилах и этикете. "></textarea>
+                <div class="error-notice">
+                    <span class="error-notice__icon"></span>
+                    <span class="error-notice__tooltip">Это поле должно быть заполнено</span>
+                </div>
+            
+            <input type="hidden" name="comment[gif_id]" value="11">
+            <input class="button comment-form__button" type="submit" name="" value="Отправить">
+        </form>    
+    <?php endif; ?>
 </div>
 
 <aside class="content__additional-col">

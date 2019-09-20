@@ -11,7 +11,7 @@ $gif_id = intval($_GET['id']) ?? null;
 
 if ($gif_id) {
     // проверяем наличие гифки в избранном
-    $sql = "SELECT id FROM gifs_fav "
+    $sql = "SELECT id FROM gifs_like "
          . "WHERE gif_id = {$gif_id} and user_id = {$_SESSION['user']['id']}";
     $result = mysqli_query($link, $sql);
         
@@ -20,12 +20,12 @@ if ($gif_id) {
     if (mysqli_num_rows($result) > 0) {
         $fav_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $fav_id = intval($fav_list[0]['id']);
-        $r1 = mysqli_query($link, "UPDATE gifs SET fav_count = fav_count - 1 WHERE id = " . $gif_id);
-        $r2 = mysqli_query($link, "DELETE FROM gifs_fav WHERE id = " . $fav_id);
+        $r1 = mysqli_query($link, "UPDATE gifs SET like_count = like_count - 1 WHERE id = " . $gif_id);
+        $r2 = mysqli_query($link, "DELETE FROM gifs_like WHERE id = " . $fav_id);
     }
     else {
-        $r1 = mysqli_query($link, "UPDATE gifs SET fav_count = fav_count + 1 WHERE id = " . $gif_id);
-        $r2 = mysqli_query($link, "INSERT INTO gifs_fav (gif_id, user_id) VALUES ($gif_id, {$_SESSION['user']['id']})");
+        $r1 = mysqli_query($link, "UPDATE gifs SET like_count = like_count + 1 WHERE id = " . $gif_id);
+        $r2 = mysqli_query($link, "INSERT INTO gifs_like (gif_id, user_id) VALUES ($gif_id, {$_SESSION['user']['id']})");
     }
 
 

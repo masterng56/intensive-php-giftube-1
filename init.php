@@ -11,3 +11,5 @@ mysqli_set_charset($link, "utf8");
 
 $content = '';
 $categories = [];
+
+// var_dump($_SESSION);
