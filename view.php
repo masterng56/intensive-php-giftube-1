@@ -48,11 +48,16 @@ else {
             $result = mysqli_query($link, $sql);
             $sim_gifs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+            $sql = "SELECT id FROM gifs_fav WHERE gif_id = $id AND user_id = " . $_SESSION['user']['id'];
+            $result = mysqli_query($link, $sql);
+            $is_fav = mysqli_num_rows($result) > 0;
+
             // передаем в шаблон результат выполнения
             $page_content = include_template('view.php', [
                 'gif' => $gif,
                 'sim_gifs' => $sim_gifs,
-                'comments' => $comments
+                'comments' => $comments,
+                'is_fav' => $is_fav
             ]);
 
         }

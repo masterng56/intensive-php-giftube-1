@@ -7,8 +7,6 @@ if (!$config['enable']) {
     exit;
 }
 
-var_dump($_SESSION);
-
 if (!$link) {
     $error = mysqli_connect_error();
     $page_content = include_template('error.php', ['error' => $error]);
@@ -26,22 +24,18 @@ else {
         $page_content = include_template('error.php', ['error' => $error]);
     }
 
-    // запрос на показ гифок в зависимости от выбора
-    // "Топовые гифки" или "Свежачок"
-    $sort_field = 'show_count';
+    $user_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : '0';
+    $sql = "SELECT gifs.id, gifs.title, gifs.path, gifs.description, gifs.show_count, gifs.like_count, gifs.fav_count, users.name, gifs.category_id FROM gifs_fav "
+         . "JOIN gifs ON gifs.id = gifs_fav.gif_id "
+         . "JOIN users ON gifs.user_id = users.id "
+         . "WHERE gifs_fav.user_id = " . $user_id . " "
+         . "ORDER BY gifs_fav.id DESC";
 
-    if (isset($_GET['tab']) && $_GET['tab'] == 'new') {
-        $sort_field = 'dt_add';
-    }
-
-    $sql = 'SELECT gifs.dt_add, gifs.id, title, path, like_count, users.name FROM gifs '
-         . 'JOIN users ON gifs.user_id = users.id '
-         . 'ORDER BY ' . $sort_field . ' DESC LIMIT 6';
     $result = mysqli_query($link, $sql);
 
     if ($result) {
         $gif_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $page_content = include_template('main.php', ['gif_list' => $gif_list]);
+        $page_content = include_template('favorites.php', ['gif_list' => $gif_list]);
     }
     else {
         $error = mysqli_error($link);
@@ -52,7 +46,7 @@ else {
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
-    'title' => 'Главная страница | Giftube'
+    'title' => 'Избранное | Giftube'
 ]);
 
 print($layout_content);

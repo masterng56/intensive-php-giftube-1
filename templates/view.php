@@ -14,14 +14,20 @@
 
         <div class="gif__desctiption">
             <div class="gif__description-data">
-                <span class="gif__username">@<?= htmlspecialchars($gif['name']); ?></span>
+                <span class="gif__username">@<?= esc($gif['name']); ?></span>
 
                 <span class="gif__views"><?= $gif['show_count']; ?></span>
                 <span class="gif__likes"><?= $gif['like_count']; ?></span>
             </div>
             <div class="gif__description">
-                <p><?= htmlspecialchars($gif['description']); ?></p>
+                <p><?= esc($gif['description']); ?></p>
             </div>
+            <?php if (isset($_SESSION['user']['id'])): ?>
+                <div class="gif__controls">
+                    <?php $favClass = $is_fav ? 'gif__control--active' : ''; ?>
+                    <a class="button gif__control <?=$favClass;?>" href="/addfav.php?id=<?=$gif['id'];?>">В избранное</a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -51,11 +57,11 @@
                 </div>
                 <div class="gif__desctiption">
                     <h3 class="gif__desctiption-title">
-                        <a href="/view.php?id=<?= $rel_gif['id']; ?>"><?=htmlspecialchars($rel_gif['title']); ?></a>
+                        <a href="/view.php?id=<?= $rel_gif['id']; ?>"><?= esc($rel_gif['title']); ?></a>
                     </h3>
 
                     <div class="gif__description-data">
-                        <span class="gif__username">@<?= htmlspecialchars($rel_gif['name']); ?></span>
+                        <span class="gif__username">@<?= esc($rel_gif['name']); ?></span>
                         <span class="gif__likes"><?= $rel_gif['like_count']; ?></span>
                     </div>
                 </div>
